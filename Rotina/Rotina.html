@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Minha rotina</title>
+	<!-- CSS CORE BOOTSTRAP -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<!-- FONT AWSOME -->
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+</head>
+<body style="background: radial-gradient(circle, rgba(41,41,41,1) 59%, rgba(32,32,32,1) 100%);">
+	<div class="container">
+
+		<!-- ROW COM BOTÕES DE CRIAR E REMOVER EVENTO -->
+		<div class="row justify-content-md-center py-2" id="create-remove-buttons">
+			<div class="col-md-auto">
+				<div class="row py-2">
+					<button class="btn btn-outline-success btn-lg shadow" id="btn-cria-evento">
+						Criar evento 
+						<i class="far fa-calendar-plus"></i>
+					</button>
+				</div>
+				<div class="row py-2">
+					<button class="btn btn-outline-danger shadow" id="btn-remover-evento">
+						Remover evento 
+						<i class="far fa-trash-alt"></i>
+					</button>
+				</div>
+				
+			</div>
+		</div>
+
+		<!-- FORMULÁRIO PARA CRIAR EVENTO -->
+		<div class="d-none row py-1 text-light fs-5" id="row-event-form">
+			<div class="col">
+				<i class="fas fa-arrow-left" id="back-arrow" style="cursor: pointer;"></i>
+			</div>
+			<div class="col d-none" id="event-textInput">
+				<label>Evento:</label>
+				<input class="form-control my-1 shadow" id="event" type="text" name="event" placeholder="Nome do evento.">
+			</div>
+			<div class="col">
+				<label>Horário:</label>
+				<select id="time" class="form-select my-1 shadow" aria-label="Default select example">
+					<option value="06">06:00am</option>
+					<option value="07">07:00am</option>
+					<option value="08">08:00am</option>
+					<option value="09">09:00am</option>
+					<option value="10">10:00am</option>
+					<option value="11">11:00am</option>
+					<option value="12">12:00am</option>
+					<option value="13">13:00pm</option>
+					<option value="14">14:00pm</option>
+					<option value="15">15:00pm</option>
+					<option value="16">16:00pm</option>
+					<option value="17">17:00pm</option>
+					<option value="18">18:00pm</option>
+					<option value="19">19:00pm</option>
+					<option value="20">20:00pm</option>
+					<option value="21">21:00pm</option>
+					<option value="22">22:00pm</option>
+				</select>
+			</div>
+			<div class="col">
+				<div class="row">
+					<label>Dias:</label>
+				</div>
+				<div class="col">
+					<div class="btn-group mt-2 btn-group-sm shadow" role="group" aria-label="Basic checkbox toggle button group">
+						<input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+						<label class="btn btn-outline-light" for="btncheck1">Segunda</label>
+
+						<input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+						<label class="btn btn-outline-light" for="btncheck2">Terça</label>
+
+						<input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+						<label class="btn btn-outline-light" for="btncheck3">Quarta</label>
+
+						<input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off">
+						<label class="btn btn-outline-light" for="btncheck4">Quinta</label>
+
+						<input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
+						<label class="btn btn-outline-light" for="btncheck5">Sexta</label>
+
+						<input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
+						<label class="btn btn-outline-light" for="btncheck6">Sábado</label>
+
+						<input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off">
+						<label class="btn btn-outline-light" for="btncheck7">Domingo</label>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<button class="btn btn-outline-success btn-lg my-4 d-none shadow" id="btn-enviar">
+					Criar 
+					<i class="far fa-calendar-check"></i>
+				</button>
+				<button class="btn btn-outline-danger btn-lg my-4 d-none shadow" id="btn-remover-dados">
+					Remover 
+					<i class="fas fa-eraser"></i>
+				</button>
+			</div>
+		</div>
+
+		<!-- TABELA -->
+		<div class="row">
+			<table class="table table-dark table-striped table-hover shadow mt-3" style="opacity: 95%;">
+				<thead>
+					<tr>
+						<th>Horário</th>
+						<th>Segunda</th>
+						<th>Terça</th>
+						<th>Quarta</th>
+						<th>Quinta</th>
+						<th>Sexta</th>
+						<th>Sábado</th>
+						<th>Domingo</th>
+					</tr>
+				</thead>
+				<tbody id="tbody">
+					<tr id="6am">
+						<th>6:00</th>
+						<td id="segunda-06"></td>
+						<td id="terca-06"></td>
+						<td id="quarta-06"></td>
+						<td id="quinta-06"></td>
+						<td id="sexta-06"></td>
+						<td id="sabado-06"></td>
+						<td id="domingo-06"></td>
+					</tr>
+					<tr id="7am">
+						<th>7:00</th>
+						<td id="segunda-07"></td>
+						<td id="terca-07"></td>
+						<td id="quarta-07"></td>
+						<td id="quinta-07"></td>
+						<td id="sexta-07"></td>
+						<td id="sabado-07"></td>
+						<td id="domingo-07"></td>
+					</tr>
+					<tr id="8am">
+						<th>8:00</th>
+						<td id="segunda-08"></td>
+						<td id="terca-08"></td>
+						<td id="quarta-08"></td>
+						<td id="quinta-08"></td>
+						<td id="sexta-08"></td>
+						<td id="sabado-08"></td>
+						<td id="domingo-08"></td>
+					</tr>
+					<tr id="9am">
+						<th>9:00</th>
+						<td id="segunda-09"></td>
+						<td id="terca-09"></td>
+						<td id="quarta-09"></td>
+						<td id="quinta-09"></td>
+						<td id="sexta-09"></td>
+						<td id="sabado-09"></td>
+						<td id="domingo-09"></td>
+					</tr>
+					<tr id="10am">
+						<th>10:00</th>
+						<td id="segunda-10"></td>
+						<td id="terca-10"></td>
+						<td id="quarta-10"></td>
+						<td id="quinta-10"></td>
+						<td id="sexta-10"></td>
+						<td id="sabado-10"></td>
+						<td id="domingo-10"></td>
+					</tr>
+					<tr id="11am">
+						<th>11:00</th>
+						<td id="segunda-11"></td>
+						<td id="terca-11"></td>
+						<td id="quarta-11"></td>
+						<td id="quinta-11"></td>
+						<td id="sexta-11"></td>
+						<td id="sabado-11"></td>
+						<td id="domingo-11"></td>
+					</tr>
+					<tr>
+						<th>12:00</th>
+						<td id="segunda-12"></td>
+						<td id="terca-12"></td>
+						<td id="quarta-12"></td>
+						<td id="quinta-12"></td>
+						<td id="sexta-12"></td>
+						<td id="sabado-12"></td>
+						<td id="domingo-12"></td>
+					</tr>
+					<tr>
+						<th>13:00</th>
+						<td id="segunda-13"></td>
+						<td id="terca-13"></td>
+						<td id="quarta-13"></td>
+						<td id="quinta-13"></td>
+						<td id="sexta-13"></td>
+						<td id="sabado-13"></td>
+						<td id="domingo-13"></td>
+					</tr>
+					<tr>
+						<th>14:00</th>
+						<td id="segunda-14"></td>
+						<td id="terca-14"></td>
+						<td id="quarta-14"></td>
+						<td id="quinta-14"></td>
+						<td id="sexta-14"></td>
+						<td id="sabado-14"></td>
+						<td id="domingo-14"></td>
+					</tr>
+					<tr>
+						<th>15:00</th>
+						<td id="segunda-15"></td>
+						<td id="terca-15"></td>
+						<td id="quarta-15"></td>
+						<td id="quinta-15"></td>
+						<td id="sexta-15"></td>
+						<td id="sabado-15"></td>
+						<td id="domingo-15"></td>
+					</tr>
+					<tr>
+						<th>16:00</th>
+						<td id="segunda-16"></td>
+						<td id="terca-16"></td>
+						<td id="quarta-16"></td>
+						<td id="quinta-16"></td>
+						<td id="sexta-16"></td>
+						<td id="sabado-16"></td>
+						<td id="domingo-16"></td>
+					</tr>
+					<tr>
+						<th>17:00</th>
+						<td id="segunda-17"></td>
+						<td id="terca-17"></td>
+						<td id="quarta-17"></td>
+						<td id="quinta-17"></td>
+						<td id="sexta-17"></td>
+						<td id="sabado-17"></td>
+						<td id="domingo-17"></td>
+					</tr>
+					<tr>
+						<th>18:00</th>
+						<td id="segunda-18"></td>
+						<td id="terca-18"></td>
+						<td id="quarta-18"></td>
+						<td id="quinta-18"></td>
+						<td id="sexta-18"></td>
+						<td id="sabado-18"></td>
+						<td id="domingo-18"></td>
+					</tr>
+					<tr>
+						<th>19:00</th>
+						<td id="segunda-19"></td>
+						<td id="terca-19"></td>
+						<td id="quarta-19"></td>
+						<td id="quinta-19"></td>
+						<td id="sexta-19"></td>
+						<td id="sabado-19"></td>
+						<td id="domingo-19"></td>
+					</tr>
+					<tr>
+						<th>20:00</th>
+						<td id="segunda-20"></td>
+						<td id="terca-20"></td>
+						<td id="quarta-20"></td>
+						<td id="quinta-20"></td>
+						<td id="sexta-20"></td>
+						<td id="sabado-20"></td>
+						<td id="domingo-20"></td>
+					</tr>
+					<tr>
+						<th>21:00</th>
+						<td id="segunda-21"></td>
+						<td id="terca-21"></td>
+						<td id="quarta-21"></td>
+						<td id="quinta-21"></td>
+						<td id="sexta-21"></td>
+						<td id="sabado-21"></td>
+						<td id="domingo-21"></td>
+					</tr>
+					<tr>
+						<th>22:00</th>
+						<td id="segunda-22"></td>
+						<td id="terca-22"></td>
+						<td id="quarta-22"></td>
+						<td id="quinta-22"></td>
+						<td id="sexta-22"></td>
+						<td id="sabado-22"></td>
+						<td id="domingo-22"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+
+	<!--  BOOTSTRAP CORE JS  -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<!-- LÓGICA -->
+	<script src="logica.js"></script>
+
+</body>
+</html>
